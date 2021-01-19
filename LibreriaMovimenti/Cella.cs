@@ -14,7 +14,7 @@ namespace LibreriaMovimenti
         public Cella(char x, int y)
         {
             this.Y = y;
-            this.X = x;
+            this.X = x; 
         }
     }
 }
