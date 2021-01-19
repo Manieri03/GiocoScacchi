@@ -6,13 +6,7 @@ namespace LibreriaMovimenti
     public class Scacchiera
     {
         public Scacchiera() {}
-        //public Cella GetCella(char x, int y)
-        //{
-        //    return;
-        //}
-        //public List GetCelle ()
-        //{
-        //    return List<Cella>
-        //} 
+        public Cella c { get; private set; }
+        public List<Cella> Celle { get; private set; }
     }
 }
