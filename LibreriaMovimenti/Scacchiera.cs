@@ -6,7 +6,7 @@ namespace LibreriaMovimenti
     public class Scacchiera
     {
         public static Scacchiera Istanza { get; } = new Scacchiera();
-        public List<Cella> celle { get; private set; } = new List<Cella>();
+        public IDictionary<string, Cella> Celle { get; } = new Dictionary<string, Cella>();
 
         private Scacchiera()
         {
@@ -14,7 +14,7 @@ namespace LibreriaMovimenti
             {
                 for (int n = 1; n <= 8; n++)
                 {
-                    celle.Add(new Cella(c, n));
+                    Celle.Add($"{c}{n}", new Cella(c,n));
                 }
             }
         }
@@ -22,14 +22,22 @@ namespace LibreriaMovimenti
 
         public Cella GetCella(char x, int y)
         {
-            foreach (Cella p in celle)
+            string pos = $"{x}{y}";
             {
-                if (p.x == x && p.y == y)
+                if (Celle.ContainsKey(pos))
                 {
-                    return p;
+                    return Celle[pos];
                 }
             }
-            throw new Exception("Cella non valida");
+            throw new Exception($"Cella {pos} non valida");
         }
+
+        public void Stampa()
+        {
+            string s = "";
+            int DimensioneCelle = 3; 
+        }
+
+        //private static void StampaLettere(ref string s,int DimensioneCelle)
     }
 }
