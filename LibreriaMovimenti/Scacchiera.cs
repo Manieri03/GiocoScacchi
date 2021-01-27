@@ -23,7 +23,7 @@ namespace LibreriaMovimenti
         public Cella GetCella(char x, int y)
         {
             string pos = $"{x}{y}";
-            {
+            { 
                 if (Celle.ContainsKey(pos))
                 {
                     return Celle[pos];
