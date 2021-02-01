@@ -4,17 +4,20 @@ using System.Text;
 
 namespace LibreriaMovimenti
 {
-    class Alfiere:Pezzo
+    public class Alfiere:Pezzo
     {
         public Alfiere(Schieramento schieramento) : base(3, schieramento) { }
 
-        public override void Muovi(Cella c)
+        public override void Muovi(Cella nuovaPosizione)
         {
-            if (Math.Abs(c.x - Cella.x) == Math.Abs(c.y - Cella.y))
+            if (Math.Abs(nuovaPosizione.x - Posizione.x) == Math.Abs(nuovaPosizione.y - Posizione.x))
             {
-                Cella = c;
+                Posizione = nuovaPosizione;
             }
-            else throw new Exception("Mossa non valida");
+            else
+                Errore();
+            
         }
+
     }
 }

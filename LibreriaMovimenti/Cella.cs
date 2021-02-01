@@ -9,17 +9,26 @@ namespace LibreriaMovimenti
         public char x { get; private set; }
         public int y { get; private set; }
         public Schieramento schieramento { get; private set; }
-        public Pezzo pezzo {private get; set; }
+        public Pezzo Pezzo { get; set; }
 
         internal Cella(char x, int y)
         {
             this.x = x;
             this.y = y;
-            if (x % 2 == 1 && x % 2 == 1 || x % 2 == 0 && x % 2 == 0)
+        }
+
+        public Schieramento Schieramento
+        {
+            get
             {
-                schieramento = Schieramento.Nero;
+                bool nPari = y % 2 == 0;
+                bool lPari = (x - 'A') % 2 == 0;
+                if (nPari == lPari)
+                    return Schieramento.Nero;
+                return Schieramento.Bianco
+
+
             }
-            else schieramento = Schieramento.Bianco;
         }
         public override string ToString()
         {

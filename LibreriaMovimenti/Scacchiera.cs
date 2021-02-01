@@ -32,12 +32,51 @@ namespace LibreriaMovimenti
             throw new Exception($"Cella {pos} non valida");
         }
 
-        public void Stampa()
+        public void Print()
         {
             string s = "";
-            int DimensioneCelle = 3; 
+            int cellSize = 3;
+            PrintLetters(ref s, cellSize);
+            PrintLine(ref s, cellSize);
+            for(int n=8; n >= 1; n--)
+            {
+                s += $"{n}|";
+                for(char c='A'; c <= 'H'; c++)
+                {
+                    Cella cella = GetCella(c, n);
+                    if (cella.Pezzo != null)
+                    {
+                        s += cella.Pezzo.ShortName.PadRight(cellSize);
+                    }
+                    else
+                    {
+                        s += $"".PadRight(cellSize);
+                    }
+                    s += "|";
+                }
+                s += "\n";
+                PrintLine(ref s, cellSize);
+            }
+            PrintLetters(ref s, cellSize);
+            Console.Write(s);
+
         }
 
-        //private static void StampaLettere(ref string s,int DimensioneCelle)
+        private static void PrintLetters(ref string s, int cellSize)
+        {
+            s += "";
+            for(char c='A'; c<= 'H'; c++)
+            {
+                s += $"| {c}".PadRight(cellSize + 1);
+            }
+            s += "|\n";
+        }
+
+        private static void PrintLine(ref string s, int cellSize)
+        {
+            s += " |".PadRight(cellSize * 11, '-') + "-\n";
+        }
+
+       
     }
 }
