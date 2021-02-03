@@ -8,14 +8,14 @@ namespace LibreriaMovimenti
     {
         public Alfiere(Schieramento schieramento) : base(3, schieramento) { }
 
-        public override void Muovi(Cella nuovaPosizione)
+        protected override bool ControllaSpostamento(Cella nuovaPosizione)
         {
             if (Math.Abs(nuovaPosizione.x - Posizione.x) == Math.Abs(nuovaPosizione.y - Posizione.x))
             {
-                Posizione = nuovaPosizione;
+                return true;
             }
             else
-                Errore();
+                return false;
             
         }
 

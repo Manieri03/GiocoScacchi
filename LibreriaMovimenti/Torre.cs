@@ -8,14 +8,14 @@ namespace LibreriaMovimenti
     {
         public Torre(Schieramento schieramento) : base(5, schieramento) { }
 
-        public override void Muovi(Cella nuovaPosizione)
+        protected override bool ControllaSpostamento(Cella nuovaPosizione)
         {
-            base.Muovi(nuovaPosizione);
+            
             if (nuovaPosizione.x == Posizione.x || nuovaPosizione.y == Posizione.y)
             {
-                Posizione = nuovaPosizione;
+                return true;
             }
-            Errore();
+            return false;
         }
     }
 }

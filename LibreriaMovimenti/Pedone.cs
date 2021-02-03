@@ -8,36 +8,25 @@ namespace LibreriaMovimenti
     {
         public Pedone(Schieramento schieramento) : base(1, schieramento) { }
 
-        public override void Muovi(Cella nuovaPosizione)
+        protected override bool ControllaSpostamento(Cella nuovaPosizione)
         {
-            base.Muovi(nuovaPosizione);
-            switch (Colore)
+            if (nuovaPosizione.x == Posizione.x)
             {
-                case Schieramento.Bianco:
-                    if (nuovaPosizione.x == Posizione.x && nuovaPosizione.y == Posizione.y + 1)
-                    {
-                        Posizione = nuovaPosizione;
-                    }
-                    else if (nuovaPosizione.x == Posizione.x && nuovaPosizione.y == Posizione.y + 2 && Posizione.y == 2)
-                    {
-                        Posizione = nuovaPosizione;
-                    }
-                    Errore();
-                    break;
-
-                case Schieramento.Nero:
-                    if (nuovaPosizione.x == Posizione.x && nuovaPosizione.y == Posizione.y - 1)
-                    {
-                        Posizione = nuovaPosizione;
-                    }
-                    else if (nuovaPosizione.x == Posizione.x && nuovaPosizione.y == Posizione.y - 2 && Posizione.y == 7)
-                    {
-                        Posizione = nuovaPosizione;
-                    }
-                    Errore();
-                    break;
-            
+                int segno = Colore == Schieramento.Bianco ? +1 : -1;
+                int start = Colore == Schieramento.Bianco ? 2 : 7;
+                if (nuovaPosizione.y == Posizione.y + segno)
+                {
+                    return true;
+                }
+                else if (Posizione.y == start && nuovaPosizione.y == Posizione.y + segno * 2)
+                {
+                    return true;
+                }
+                
             }
+
+            return false;
+
         }
     }
 }

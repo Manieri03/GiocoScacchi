@@ -30,17 +30,32 @@ namespace LibreriaMovimenti
         }
         public virtual void Muovi(Cella nuovaposizione)
         {
-            //
+            ControllaPosizione(nuovaposizione);
+            if (ControllaSpostamento(nuovaposizione))
+                EseguiMovimento(nuovaposizione);
+            throw new Exception("Mossa non valida");
         }
+
+        private void ControllaPosizione(Cella p)
+        {
+            if (Posizione.Pezzo != null)
+                throw new Exception($"La cella {Posizione} è già occupata");
+        }
+
+        protected abstract bool ControllaSpostamento(Cella nuovaposizione);
+
+        private void EseguiMovimento(Cella nuovaposizione)
+        {
+            Posizione = nuovaposizione;
+            Console.WriteLine($"Pezzo{ToString()} spostato in {nuovaposizione}");
+        }
+
+
 
         public override string ToString()
         {
             return $"Il pezzo, che ha peso {Peso}, di colore {Colore}, sta in {Posizione}";
         }
 
-        protected void Errore()
-        {
-            throw new Exception($"Mossa per {Name} non valida");
-        }
     }
 }

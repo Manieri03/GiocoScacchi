@@ -8,15 +8,16 @@ namespace LibreriaMovimenti
     {
         public Cavallo(Schieramento schieramento) : base(3, schieramento) { }
 
-        public override void Muovi(Cella nuovaposizione)
+        protected override bool ControllaSpostamento(Cella nuovaPosizione)
         {
-            int h = Math.Abs(nuovaposizione.y - Posizione.y);
-            int v = Math.Abs(nuovaposizione.x - Posizione.x);
+            int h = Math.Abs(nuovaPosizione.x - Posizione.y);
+            int v = Math.Abs(nuovaPosizione.x - Posizione.x);
             if ((h == 3 && v == 1) || (h == 1 && v == 3))
             {
-                Posizione = nuovaposizione
-            } else
-                Errore();
+                return true;
+            }
+            else
+                return false;
         }
     }
 }
