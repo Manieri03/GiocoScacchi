@@ -28,7 +28,10 @@ namespace LibreriaMovimenti
             p = Peso;
             this.Colore = colore;
         }
-        public virtual void Muovi(Cella nuovaposizione);
+        public virtual void Muovi(Cella nuovaposizione)
+        {
+            //
+        }
 
         public override string ToString()
         {
