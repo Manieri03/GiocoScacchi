@@ -25,7 +25,7 @@ namespace LibreriaMovimenti
                 bool lPari = (x - 'A') % 2 == 0;
                 if (nPari == lPari)
                     return Schieramento.Nero;
-                return Schieramento.Bianco
+                return Schieramento.Bianco;
 
 
             }

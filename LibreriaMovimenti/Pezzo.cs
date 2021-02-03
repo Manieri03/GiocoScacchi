@@ -15,9 +15,9 @@ namespace LibreriaMovimenti
             get => Posizione; set
             {
                 if (Posizione != null)
-                    Posizione.pezzo = null;
+                    Posizione.Pezzo = null;
                 Posizione = value;
-                Posizione.pezzo = this;
+                Posizione.Pezzo = this;
             }
         }
 
@@ -28,7 +28,7 @@ namespace LibreriaMovimenti
             p = Peso;
             this.Colore = colore;
         }
-        public abstract void Muovi(Cella nuovaposizione);
+        public virtual void Muovi(Cella nuovaposizione);
 
         public override string ToString()
         {

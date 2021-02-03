@@ -4,18 +4,19 @@ using System.Text;
 
 namespace LibreriaMovimenti
 {
-    public class Regina:Pezzo
+    public class Regina : Pezzo
     {
         public Regina(Schieramento schieramento) : base(10, schieramento) { }
 
-        public override void Muovi(Cella c)
+        public override void Muovi(Cella nuovaPosizione)
         {
-            if (c.x == Cella.x || c.y == Posizione.Numero ||
-                Math.Abs(c.x - Posizione.Lettera) == Math.Abs(c.y - Posizione.Numero))
+            base.Muovi(nuovaPosizione);
+            if (nuovaPosizione.x == Posizione.x || nuovaPosizione.y == Posizione.y ||
+                Math.Abs(nuovaPosizione.x - Posizione.x) == Math.Abs(nuovaPosizione.y - Posizione.y))
             {
                 Posizione = nuovaPosizione;
             }
-            else throw new Exception("Mossa non valida");
+            Errore();
         }
     }
 }
