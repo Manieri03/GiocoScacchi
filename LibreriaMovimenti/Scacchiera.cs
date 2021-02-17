@@ -3,11 +3,19 @@ using System.Collections.Generic;
 
 namespace LibreriaMovimenti
 {
+    public delegate void LogSpostamento(Pezzo p, Cella vecchiaposizione, Cella nuovaposizione);
     public class Scacchiera
     {
         public static Scacchiera Istanza { get; } = new Scacchiera();
         public IDictionary<string, Cella> Celle { get; } = new Dictionary<string, Cella>();
 
+        public event LogSpostamento Spostamento;
+
+        internal void InviaLog(Pezzo p, Cella vecchiaposizione, Cella nuovaposizione)
+        {
+            if (Spostamento != null)
+                Spostamento(p, vecchiaposizione, nuovaposizione);
+        }
         private Scacchiera()
         {
             for (char c = 'A'; c <= 'H'; c++)

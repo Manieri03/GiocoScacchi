@@ -12,12 +12,12 @@ namespace LibreriaMovimenti
         public Schieramento Colore { get; private set; }
         public Cella Posizione
         {
-            get => Posizione; set
+            get => posizione; set
             {
-                if (Posizione != null)
-                    Posizione.Pezzo = null;
-                Posizione = value;
-                Posizione.Pezzo = this;
+                if (posizione != null)
+                    posizione.Pezzo = null;
+                posizione = value;
+                posizione.Pezzo = this;
             }
         }
 
@@ -46,8 +46,9 @@ namespace LibreriaMovimenti
 
         private void EseguiMovimento(Cella nuovaposizione)
         {
+            Scacchiera.Istanza.InviaLog(this, Posizione, nuovaposizione);
             Posizione = nuovaposizione;
-            Console.WriteLine($"Pezzo{ToString()} spostato in {nuovaposizione}");
+            
         }
 
 
